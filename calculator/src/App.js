@@ -8,16 +8,36 @@ export default function App() {
     const handleClick = (e) =>{
         setResult(result.concat(e.target.name));
     }
+
+    const calculate = () =>{
+      try{
+        setResult(eval(result).toString());
+
+      }
+      catch(err){
+
+      setResult("Error");
+      }
+  }
+
+    const clear = () =>{
+    setResult("");
+
+    }
+
+    const backspace = () =>{
+      setResult(result.slice(0, result.length -1));
+    }
   return (
     <>
 
 <div className="container">
     <form>
-       <input type = "text" value={result}/>
+       <input type = "text" className="text2" value={result}/>
     </form>
     <div className='keypad'>
-         <button onClick={handleClick}>Clear</button>
-         <button onClick={handleClick}>C</button>
+         <button className='highlight' onClick={clear} id='clear'>Clear</button>
+         <button className='highlight' onClick={backspace}id = 'backspace'>C</button>
          <button name='/' onClick={handleClick}>&divide;</button>
          <button name='7' onClick={handleClick}>7</button>
          <button name='8' onClick={handleClick}>8</button>
@@ -33,7 +53,7 @@ export default function App() {
          <button name='+' onClick={handleClick}>+</button>
          <button name='0' onClick={handleClick}>0</button>
          <button name='.' onClick={handleClick}>.</button>
-         <button onClick={handleClick}>=</button>
+         <button className='highlight' onClick={calculate} id='result'>=</button>
        </div>
 </div>
 
